@@ -1,0 +1,18 @@
+<% i = 0 %>
+<div id="channel_list">
+  <% while i < @channels.entries.size %>
+    <div class="row">
+      <%= render "channels/channel", :channel => @channels.entries[i] %>
+      <% i += 1 %>
+      <% if (i < @channels.entries.size) %>
+        <%= render "channels/channel", :channel => @channels.entries[i] %>
+      <% end %>
+      <% i += 1 %>
+      <% if (i < @channels.entries.size) %>
+        <%= render "channels/channel", :channel => @channels.entries[i] %>
+      <% end %>
+    </div>
+    <div style="margin:40px 0px;"></div>
+    <% i += 1 %>
+  <% end %>
+</div>

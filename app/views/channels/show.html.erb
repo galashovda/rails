@@ -1,0 +1,37 @@
+<% provide(:title, @channel.name) %>
+<div class="content">
+  <div class="blog">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2><span class="ion-minus"/><%= @channel.name %><span class="ion-minus"/></h2>
+        <h4><span class="ion-minus"/><%= @channel.category.name %><span class="ion-minus"/></h4>
+        <p style="margin-left: 20px;"><%= @channel.description %></p><br>
+        <% if @channel.user.id == current_user.id %>
+          <%= link_to edit_channel_path(@channel), class: "btn btn-primary a-btn-slide-text" do %>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <span><strong>Обновить</strong></span>
+          <% end %>
+        <% end %>
+        <div class="col-lg-5 pull-right">
+          <%= render "channels/subscribe_form", :user => current_user %>
+        </div>
+      </div>
+    </div>
+    <hr style="border-top: 2px solid #eeeeee"/>
+    <% i = 0 %>
+    <% while i < @feeds.entries.size %>
+      <div class="row">
+        <%= render "feeds/feed_on_channel_page", :feed => @feeds.entries[i] %>
+        <% i += 1 %>
+        <% if (i < @feeds.entries.size) %>
+          <%= render "feeds/feed_on_channel_page", :feed => @feeds.entries[i] %>
+        <% end %>
+      </div>
+      <div style="margin:40px 0px;"></div>
+      <% i += 1 %>
+    <% end %>
+    <% unless @fromRss %>
+      <%= will_paginate @feeds %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="fixed right-side-form">
+  <h3>Не нашли нужный канал?</h3>
+  <h3>Добавьте его!</h3>
+
+  <div class="form-group col-lg-12">
+    <%= form_for(@newChannel, remote: true) do |f| %>
+      <%= f.text_field :name, placeholder: "Название", class: "form-control mt-3" %>
+      <%= f.text_area :description, placeholder: "Описание", class: "form-control mt-3" %>
+      <%= f.text_field :url, placeholder: "RSS ссылка", class: "form-control mt-3" %>
+      <%= f.text_field :site_page, placeholder: "Ссылка на сайт", class: "form-control mt-3" %>
+      <%= f.hidden_field :type_id, value: "1" %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.select(:category_id, options_for_select(@categories.map {|c| [c.name, c.id]}), {}, {class: "form-control mt-3 h-100"}) %>
+      <div class="form-inline">
+        <%= f.submit "Добавить", class: "btn btn-primary mt-3" %>
+        <%= f.submit "Проверить ссылку", class: "btn btn-primary mt-3 ml-4" %>
+      </div>
+
+      <span id="channelValidation"/>
+      <div class="clear"></div>
+    <% end %>
+  </div>
+
+</div>

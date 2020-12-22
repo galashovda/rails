@@ -1,0 +1,60 @@
+<% provide(:title, 'Регистрация') %>
+<style>
+  body {
+    margin: 0;
+    background: #0f1b23;
+  }
+</style>
+
+<div class="sign-in">
+  <h3>Регистрация</h3>
+  <div class="clear"></div>
+  <%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages' %>
+    <div>
+      <%= f.label :name, class: "user" do %>
+        <svg viewBox="0 0 32 32">
+          <g filter="">
+            <use xlink:href="#lock-locker"></use>
+          </g>
+        </svg>
+
+      <% end %>
+      <%= f.text_field :name, placeholder: "Никнейм" %>
+    </div>
+    <div>
+      <%= f.label :email, class: "user" do %>
+        <svg viewBox="0 0 32 32">
+          <g filter="">
+            <use xlink:href="#lock-locker"></use>
+          </g>
+        </svg>
+      <% end %>
+      <%= f.text_field :email, placeholder: "Почта" %>
+    </div>
+    <div>
+      <%= f.label :password, class: "user" do %>
+        <svg viewBox="0 0 32 32">
+          <g filter="">
+            <use xlink:href="#lock-locker"></use>
+          </g>
+        </svg>
+      <% end %>
+      <%= f.password_field :password, placeholder: "Ключ" %>
+    </div>
+    <div>
+      <%= f.label :password_confirmation, class: "user" do %>
+        <svg viewBox="0 0 32 32">
+          <g filter="">
+            <use xlink:href="#lock-locker"></use>
+          </g>
+        </svg>
+      <% end %>
+      <%= f.password_field :password_confirmation, placeholder: "Подтвердить" %>
+    </div>
+    <div>
+      <%= f.submit "Создать аккаунт", class: "button"%>
+    </div>
+    <div class="clear"></div>
+  <% end %>
+</div>
